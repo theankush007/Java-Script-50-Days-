@@ -1,0 +1,18 @@
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input = "";
+
+process.stdin.on('data', function (data) {
+    input += data;
+});
+
+
+process.stdin.on('end', function () {
+    var inputArray = input.split("\n");
+    var res;
+    var a = parseInt(inputArray[0], 10);
+    var b = parseInt(inputArray[1], 10);
+    console.log(a+b);
+  
+});
