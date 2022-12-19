@@ -1,0 +1,35 @@
+function processData(input) {
+  var args = input.split('\n');
+  var n = Number(args[0]);
+  var topo = args[1];
+  var belowSeaLevel = false;
+  var level = 0;
+  var valleysHiked = 0;
+  for (let i = 0; i < n; i += 1) {
+    // Adjust current level of hike
+    if (topo.charAt(i) === 'D') {
+      level -= 1;
+    } else {
+      level += 1;
+    }
+    if (level < 0) {
+      belowSeaLevel = true;
+    }
+    if (belowSeaLevel && level === 0) {
+      valleysHiked += 1;
+      belowSeaLevel = false;
+    }
+  }
+  console.log(valleysHiked);
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
