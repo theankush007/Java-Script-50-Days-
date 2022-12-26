@@ -1,0 +1,26 @@
+function processData(input) {
+    var n = parseInt(input), result = 0;
+    
+    function totalLikes(people, n){
+        var liked = Math.floor(people / 2);
+        result += liked;
+        if(n > 1){
+            totalLikes(liked * 3, --n);
+        }
+    }
+    
+    totalLikes(5, n);
+    
+    console.log(result);    
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
