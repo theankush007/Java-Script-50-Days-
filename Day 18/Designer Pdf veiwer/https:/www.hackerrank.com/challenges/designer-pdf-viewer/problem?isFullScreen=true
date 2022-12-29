@@ -1,0 +1,38 @@
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+function main() {
+  h = readLine().split(' ');
+  h = h.map(Number);
+  var word = readLine();
+  var letters = word.split("");
+  var wordLen = letters.length;
+  var tallest = 0;
+  // console.log(h[letters[1].charCodeAt(0) - 97])
+  for(z = 0; z < wordLen; z++){
+    if(h[letters[z].charCodeAt(0) - 97] > tallest){
+      tallest = h[letters[z].charCodeAt(0) - 97];
+    }
+  }
+  console.log(tallest * wordLen)
+  
+}
