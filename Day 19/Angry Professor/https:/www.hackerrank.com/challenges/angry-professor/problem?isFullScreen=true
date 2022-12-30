@@ -1,0 +1,37 @@
+function processData(input) {
+    //Enter your code here
+    var res = "No";
+    var lines = input.split('\n');
+    lines.shift(1);
+    for(var i = 0; i < lines.length; i += 2) {
+      var currentLine = lines[i].split(" ");
+      var nextLine = lines[i+1].split(" ");
+      var latePeople = 0;
+      if(nextLine.length != currentLine[0]){
+        process.stdout.write("NO\n");
+      } else {
+          for(var j = 0; j < nextLine.length; j++) {
+              if(nextLine[j] > 0) {
+                  latePeople++;
+              }
+          }
+          if((currentLine[0] - latePeople) >= currentLine[1]){
+                  process.stdout.write("NO\n");
+          } else {
+                  process.stdout.write("YES\n");
+          }
+      }
+    } 
+
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
