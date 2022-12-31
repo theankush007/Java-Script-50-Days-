@@ -1,0 +1,33 @@
+function processData(input) {
+    //Enter your code here
+    var a = input.split("\n");
+    var n = a.shift();
+    
+    for(var i = 0; i < n; i++) {
+        var b = a[i].split(" ");
+
+        var prisoners = parseInt(b[0]);
+        var sweets = parseInt(b[1]);
+        var id = parseInt(b[2]);
+        var last = 0;
+
+        last = (sweets+id-1)%prisoners;
+
+        if(last === 0) {
+           last = prisoners;
+        }
+
+        console.log(last);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
