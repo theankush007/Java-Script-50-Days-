@@ -1,0 +1,21 @@
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+var input = "";
+process.stdin.on("data", function (chunk) {
+    input += chunk;
+});
+process.stdin.on("end", function () {
+    // now we can read/parse input
+    main(input);
+});
+function main(inp) {
+    inp=inp.split('\n');
+    var n=inp[0];
+    var a=inp[1].split(' ');
+    for (var i=0; i<n; i++) a[i]=parseInt(a[i]);
+    for (var i=1; i<=n; i++) {
+        var ind=a.indexOf(i);
+        console.log(a.indexOf(ind+1)+1);
+    }
+    
+}
