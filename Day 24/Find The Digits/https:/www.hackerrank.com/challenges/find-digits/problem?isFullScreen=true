@@ -1,0 +1,28 @@
+function processData(numbers) {
+  var numbers = numbers.split('\n');
+  numbers.shift();
+  
+  var divs = numbers.map(function(n) {
+    var count = 0;
+    n.split('').forEach(function(d) {
+      if(n%d === 0) {
+        count++;
+      }
+    });
+    return count;
+  });
+  
+  console.log(divs.join('\n'));
+  
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
