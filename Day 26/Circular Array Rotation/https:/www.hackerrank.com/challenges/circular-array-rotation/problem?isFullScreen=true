@@ -1,0 +1,29 @@
+function processData(input) {
+    var data = input.split('\n');
+    var k = parseInt(data[0].split(' ')[1], 10);
+    var ns = data[1].split(' ').map(function(s) { return parseInt(s, 10); });
+    var qs = data.slice(2).map(function(s) { return parseInt(s, 10); });
+    var rotated = [];
+    var i, newIndex;
+
+    for (i = 0; i < ns.length; i++) {
+        newIndex = (k + i + 1) % ns.length;
+        if (newIndex === 0) newIndex = ns.length - 1;
+        else newIndex--;
+        rotated[newIndex] = ns[i];
+    }
+    for (i = 0; i < qs.length; i++) {
+        console.log(rotated[qs[i]]);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
