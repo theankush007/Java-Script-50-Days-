@@ -1,0 +1,79 @@
+function processData(input) {
+    //Enter your code here
+    input = parseInt(input);
+    
+    var product = [1];
+    for (var i = 1; i < input + 1; i++) {
+        product = bigMultiply(product, i);
+        //console.log('product:' + product);
+    }
+    console.log(product.join(""));
+    
+    /*
+    console.log("big add test");
+    var sum = bigAdd([], [1, 4]);
+    console.log('sum: %s', sum);
+    
+    console.log("big mult test");
+    var product = bigMultiply([6], 4);
+    console.log("product %s", product);
+    */
+} 
+
+function bigMultiply(numArray, multiplier) {
+    var sum = [];
+    for (var i = 1; i <= multiplier; i++) {
+        sum = bigAdd(sum, numArray);
+        //console.log("sum %s, numArray %s, i $s", sum, numArray, i);
+    }
+    return sum; 
+}
+
+function bigAdd(numArray1, numArray2) {
+    var longerArray;
+    var shorterArray;
+    var sum = [];
+    
+    if (numArray1.length > numArray2.length) {
+        longerArray = numArray1;
+        shorterArray = numArray2;
+    } else {
+        longerArray = numArray2;
+        shorterArray = numArray1;
+    }
+  
+    // reverse the array orientation so that base^i start from index 0
+    longerArray.reverse();
+    shorterArray.reverse();
+    
+    var carry = 0;
+    for (var i = 0; i < longerArray.length; i++) {
+        var a = shorterArray[i] || 0;
+        var b = longerArray[i];
+        var c = a + b + carry;
+        
+        carry = Math.floor(c / 10);
+        var digit = c % 10;
+        sum.unshift(digit);
+    }
+    if (carry > 0) {
+        sum.unshift(carry);
+    }
+    
+    // reverse the original arrays. Dirty inefficient.
+    longerArray.reverse();
+    shorterArray.reverse();
+   
+    return sum;
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
