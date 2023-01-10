@@ -1,0 +1,30 @@
+function processData(input) {
+    //Enter your code here
+    var dates = input.split('\n').map(function(date) {
+        return date.split(' ').map(function(datePart) {
+            return parseInt(datePart, 10);
+        });
+    });
+    if (dates[0][2] > dates[1][2]) {
+        console.log(10000);
+    } else if (dates[0][2] < dates[1][2]) {
+        console.log(0);
+    } else if (dates[0][1] > dates[1][1]) {
+        console.log((dates[0][1] - dates[1][1]) * 500);
+    } else if (dates[0][1] < dates[1][1]) {
+        console.log(0);
+    } else {
+        console.log(Math.max(dates[0][0] - dates[1][0], 0) * 15);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
