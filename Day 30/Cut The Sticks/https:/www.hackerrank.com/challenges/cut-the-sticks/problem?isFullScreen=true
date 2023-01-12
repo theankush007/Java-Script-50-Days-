@@ -1,0 +1,22 @@
+function processData(input) {
+    function num(x) { return +x;}
+    var sticks = input.split('\n')[1].split(' ').map(num);
+    function min(x) { return Math.min.apply(null, x); }
+    function dec(x, min) { return x.map(function(y) { return y-min; }).filter(num); }
+    var swap = sticks;
+    console.log(sticks.length);
+    while ((swap = dec(swap, min(swap))) && swap.length) {
+        console.log(swap.length);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
