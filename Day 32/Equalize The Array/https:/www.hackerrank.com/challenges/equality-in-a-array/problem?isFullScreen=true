@@ -1,0 +1,38 @@
+function processData(input) {
+    //Enter your code here
+    var arr = input.split('\n');
+    var len = Number(arr[0]);
+    var numbers = arr[1].split(" ").map(Number);
+    
+    function deleteElement(a, l){
+        var dict = {}; 
+        var key; 
+        var max = 0; 
+        for(var i = 0; i < l; i++){
+            key = a[i]
+            if(key in dict){
+                dict[key]++; 
+            } else {
+                dict[key] = 1; 
+            }
+        }
+        for(var prop in dict){
+            if(dict[prop] > max){
+                max = dict[prop];
+            }
+        }
+        return l - max; 
+    }
+    console.log(deleteElement(numbers, len).toString());
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
