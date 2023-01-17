@@ -1,0 +1,29 @@
+function processData(input) {
+    //Enter your code here
+    var lines = input.split('\n');
+    var testCount = lines[0];
+    
+    for(var i=1;i<lines.length;++i){
+        var test = lines[i].split(' ');
+        var hit = 0;
+        var min = Math.ceil(Math.sqrt(test[0]));
+        var max = Math.sqrt(test[1]);
+        
+        for(var j = min; j <= max; ++j){
+            if( (j * j)<= test[1] )
+                hit += 1;
+        }
+        console.log(hit);
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
